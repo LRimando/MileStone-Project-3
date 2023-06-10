@@ -1,5 +1,8 @@
 import React, {useState} from 'react' // import react and use a useState effect
 import axios from 'axios' // import axios dependency for our API 
+import Search from './components/search/search'
+import CurrentWeather from "./components/current-weather/current-weather"
+import Forecast from "./components/forecast/forecast"
 
 const App = () => {
 
