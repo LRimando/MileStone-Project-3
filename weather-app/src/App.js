@@ -1,19 +1,22 @@
-import React, {useEffect, useState} from 'react' // import react and use a useState effect
-import axios from 'axios' // import axios dependency for our API 
-import Search from './components/search/search'
-import CurrentWeather from "./components/current-weather/current-weather"
-import Forecast from "./components/forecast/forecast"
+import React, {useEffect, useState} from 'react'; // import react and use a useState effect
+import axios from 'axios'; // import axios dependency for our API 
+import Search from './components/search/search';
+import CurrentWeather from "./components/current-weather/current-weather";
+import Forecast from "./components/forecast/forecast";
+import './App.css';
+import '.App.js';
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
   const [location, setLocation] = useState('') // another state needed to find current location 
+}
 
   // api url here
   useEffect(() => {
     const fetchData = async () => {
       const apiKey = 'a617587166ac4dabbad3327dd6510684';
       const url = 'http://api.weatherbit.io/v2.0/current'
-
+    }
       //search function to connect to API 
   const searchLocation = (event) => {
     if (event.key === 'Enter') { // Even.key used to submit our input in an enter button 
@@ -22,8 +25,7 @@ const App = () => {
         console.log(response.data)
       })
     }
-  }
-      
+  
       /* try {
         const response = await axios.get(url);
         setWeatherData(response.data);
@@ -43,7 +45,7 @@ const App = () => {
         value = {location}
         onChange = {event => setLocation(event.target.value)}
         placeholder = 'Enter Location'
-        onKeyPress = {searchLocation} //use keyPress to run function since theres no button 
+        onKeyDown = {searchLocation} //use keyDown to run function since theres no button 
         type = "text"/>
       <div className = "container">
         <div className = "top">
@@ -69,11 +71,11 @@ const App = () => {
           </div>
         </div>
       </div>
-      ) : (
         <p>Scanning Skies...</p>
       )
     </div>
     </div>
-  )}
-
+  );
+};
+  })
 export default App;
