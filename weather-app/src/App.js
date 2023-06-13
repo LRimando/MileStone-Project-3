@@ -10,7 +10,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = 'http://api.weatherbit.io/v2.0/current?key=${apiKey}';
+      const url = `http://api.weatherbit.io/v2.0/current?key=${apiKey}`;
       try {
         const response = await axios.get(url);
         setWeatherData(response.data);
