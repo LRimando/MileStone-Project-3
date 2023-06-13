@@ -6,12 +6,11 @@ import Forecast from "./components/forecast/forecast"
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
-  // const url = 'api url here'
+  const apiKey = 'a617587166ac4dabbad3327dd6510684';
+
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = 'a617587166ac4dabbad3327dd6510684';
-      const url = 'http://api.weatherbit.io/v2.0/current'
-
+      const url = 'http://api.weatherbit.io/v2.0/current?key=${apiKey}';
       try {
         const response = await axios.get(url);
         setWeatherData(response.data);
