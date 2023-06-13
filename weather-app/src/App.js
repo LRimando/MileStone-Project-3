@@ -6,13 +6,25 @@ import Forecast from "./components/forecast/forecast"
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
-  // const url = 'api url here'
+  const [location, setLocation] = useState('') // another state needed to find current location 
+
+  // api url here
   useEffect(() => {
     const fetchData = async () => {
       const apiKey = 'a617587166ac4dabbad3327dd6510684';
       const url = 'http://api.weatherbit.io/v2.0/current'
 
-      try {
+      //search function to connect to API 
+  const searchLocation = (event) => {
+    if (event.key === 'Enter') { // Even.key used to submit our input in an enter button 
+      axios.get(url).then((response) => {
+        setData(response.data)
+        console.log(response.data)
+      })
+    }
+  }
+      
+      /* try {
         const response = await axios.get(url);
         setWeatherData(response.data);
       } catch (error) {
@@ -22,11 +34,17 @@ const App = () => {
 
       fetchData();
   }, []);
-
+ */
 
   return (
     <div className = "app">
-      {weatherData ? (
+      <div className = "search">
+        <input 
+        value = {location}
+        onChange = {event => setLocation(event.target.value)}
+        placeholder = 'Enter Location'
+        onKeyPress = {searchLocation} //use keyPress to run function since theres no button 
+        type = "text"/>
       <div className = "container">
         <div className = "top">
           <div className = "location">
@@ -53,9 +71,9 @@ const App = () => {
       </div>
       ) : (
         <p>Scanning Skies...</p>
-      )}
+      )
     </div>
-  );
-};
+    </div>
+  )}
 
 export default App;
