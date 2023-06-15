@@ -8,12 +8,13 @@ import '.App.js';
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
+
   const [location, setLocation] = useState('') // another state needed to find current location 
 }
 
-  // api url here
   useEffect(() => {
     const fetchData = async () => {
+
       const apiKey = 'ac647493ae56957ba5c10c969f967bec';
       const url = `https://api.openweathermap.org/data/2.5/weather?q=Irvine&appid=ac647493ae56957ba5c10c969f967bec`
     }
@@ -36,10 +37,11 @@ const App = () => {
 
       fetchData();
   }, []);
- */
+
 
   return (
     <div className = "app">
+
       <div className = "search">
         <input 
         value = {location}
@@ -47,6 +49,7 @@ const App = () => {
         placeholder = 'Enter Location'
         onKeyDown = {searchLocation} //use keyDown to run function since theres no button 
         type = "text"/>
+
       <div className = "container">
         <div className = "top">
           <div className = "location">
@@ -72,10 +75,12 @@ const App = () => {
         </div>
       </div>
         <p>Scanning Skies...</p>
-      )
-    </div>
+      )}
     </div>
   );
 };
+
   })
+
+
 export default App;
