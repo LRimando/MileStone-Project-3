@@ -33,7 +33,7 @@ const App = () => {
         onChange = {event => setLocation(event.target.value)} //onchange used to change our value/response
         placeholder = 'Enter Location'
         onKeyDown = {searchLocation} //use keyDown to run function since theres no button 
-        type = "text"/> 
+        type = "text" />
       </div>
       <div className = "container">
         <div className = "top">
@@ -47,12 +47,9 @@ const App = () => {
             {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
-      </div>
-    </div>
-  );
-  
-  {data.name != undefined && 
-        <div className = "bottom" >
+      </div>  
+  {data.name != undefined && (
+        <div className = "bottom">
           <div className = "feels like">
             {data.main ? <p className = 'bold'>{data.main.feels_like}</p> : null}
             <p> Feels Like </p>
@@ -66,6 +63,8 @@ const App = () => {
             <p>Wind Speed</p>
           </div>
       </div>
-  }
+    )}   
+  </div>
+  );
 
 export default App;
