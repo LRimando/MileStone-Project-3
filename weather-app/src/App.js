@@ -11,31 +11,37 @@ const App = () => {
   const [location, setLocation] = useState('') // another state needed to find current location 
 }
 
+const searchLocation = (searchQuery) => {
+  setLocation(searchQuery);
   // api url here
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ac647493ae56957ba5c10c969f967bec`//${} this is the dynamic value we will be passing
-      
+      axios.get(url).then((response) => {
+        setWeatherData(response.data);
+        console.log(response.data);
+      });
+    };
   //search function to connect to API 
-  const searchLocation = (event) => {
-    if (event.key === 'Enter') { // Even.key used to submit our input in an enter button 
-      axios.get(url).then((response) => { //response will be passed through arrow function 
-        setData(response.data)
-        console.log(response.data)
-      })
-      setLocation('')
-    }
-  }
+  // const searchLocation = (event) => {
+  //   if (event.key === 'Enter') { // Even.key used to submit our input in an enter button 
+  //     axios.get(url).then((response) => { //response will be passed through arrow function 
+  //       setData(response.data)
+  //       console.log(response.data)
+  //     })
+  //     setLocation('')
+  //   }
+  // }
   
   return (
     <div className="app">
-      <div className="search">
-        <input
+      <Search onSearch={searchLocation} />
+         {/* <input
           value={location}
           onChange={(event) => setLocation(event.target.value)}
           placeholder="Enter Location"
           onKeyDown={searchLocation}
           type="text"
         />
-      </div>
+      </div>  */}
       <div className="container">
         <div className="top">
           <div className="location">
