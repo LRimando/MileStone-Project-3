@@ -8,79 +8,64 @@ import '.App.js';
 
 const App = () => {
   const [weatherData, setWeatherData] = useState(null);
-
   const [location, setLocation] = useState('') // another state needed to find current location 
 }
 
-  useEffect(() => {
-    const fetchData = async () => {
-
-      const apiKey = 'ac647493ae56957ba5c10c969f967bec';
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=Irvine&appid=ac647493ae56957ba5c10c969f967bec`
-    }
-      //search function to connect to API 
+  // api url here
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ac647493ae56957ba5c10c969f967bec`//${} this is the dynamic value we will be passing
+      
+  //search function to connect to API 
   const searchLocation = (event) => {
     if (event.key === 'Enter') { // Even.key used to submit our input in an enter button 
-      axios.get(url).then((response) => {
+      axios.get(url).then((response) => { //response will be passed through arrow function 
         setData(response.data)
         console.log(response.data)
       })
+      setLocation('')
     }
+  }
   
-      /* try {
-        const response = await axios.get(url);
-        setWeatherData(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-
-      fetchData();
-  }, []);
-
-
   return (
-    <div className = "app">
-
+    <div className="app">
       <div className = "search">
         <input 
         value = {location}
-        onChange = {event => setLocation(event.target.value)}
+        onChange = {event => setLocation(event.target.value)} //onchange used to change our value/response
         placeholder = 'Enter Location'
         onKeyDown = {searchLocation} //use keyDown to run function since theres no button 
-        type = "text"/>
-
+        type = "text"/> 
+      </div>
       <div className = "container">
         <div className = "top">
           <div className = "location">
-             <p>{`${weatherData.city_name}, ${weatherData.state_code}, ${weatherData.country_code}`} </p>
+             <p>{data.name}</p>
           </div>
           <div className = "temp">
-            <h1> {weatherData.temp} ºF</h1>
+            {data.main ? <h1>{data.main.temp}°F</h1> : null}
+          </div>
           <div className = "clouds">
-            <p> {weatherData.clouds} % </p>
-          </div>
-          </div>
-        <div className = "bottom" >
-          <div className = "feels like">
-            <p> Feels like: {weatherData.app_temp} ºF </p>
-          </div>
-          <div className = "humidity">
-            <p> Humidity: {weatherData.rh}% </p>
-          </div>
-          <div className = "wind">
-            Wind: {weatherData.wind_spd} m/s, {weatherData.wind_cdir_full}
-          </div>
+            {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
       </div>
-        <p>Scanning Skies...</p>
-      )}
     </div>
   );
-};
-
-  })
-
+  
+  {data.name != undefined && 
+        <div className = "bottom" >
+          <div className = "feels like">
+            {data.main ? <p className = 'bold'>{data.main.feels_like}</p> : null}
+            <p> Feels Like </p>
+          </div>
+          <div className = "humidity">
+            {data.main ? <p className='bold'>{data.main.humidity}</p> : null}
+            <p> Humidity </p>
+          </div>
+          <div className = "wind">
+            {data.wind ? <p className='bold'>{data.wind.speed} MPH </p> : null}
+            <p>Wind Speed</p>
+          </div>
+      </div>
+  }
 
 export default App;
