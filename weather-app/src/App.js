@@ -14,8 +14,8 @@ const App = () => {
   // api url here
   useEffect(() => {
     const fetchData = async () => {
-      const apiKey = 'a617587166ac4dabbad3327dd6510684';
-      const url = 'http://api.weatherbit.io/v2.0/current'
+      const apiKey = 'ac647493ae56957ba5c10c969f967bec';
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=Irvine&appid=ac647493ae56957ba5c10c969f967bec`
     }
       //search function to connect to API 
   const searchLocation = (event) => {
