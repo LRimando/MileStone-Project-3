@@ -22,27 +22,27 @@ function App() {
   
   return (
     <div className="app">
-      <div className="search">
-        <input
-          value={location}
-          onChange={(event) => setLocation(event.target.value)}
-          placeholder="Enter Location"
-          onKeyDown={searchLocation}
-          type="text"
-        />
+      <div className = "search">
+        <input 
+        value = {location}
+        onChange = {event => setLocation(event.target.value)} //onchange used to change our value/response
+        placeholder = 'Enter Location'
+        onKeyDown = {searchLocation} //use keyDown to run function since theres no button 
+        type = "text" />
       </div>
-      <div className="container">
-        <div className="top">
-          <div className="location">
-            <p>{weatherData?.name}</p>
+      <div className = "container">
+        <div className = "top">
+          <div className = "location">
+             <p>{data.name}</p>
           </div>
-          <div className="temp">
-            {weatherData?.main ? <h1>{weatherData.main.temp}°F</h1> : null}
+          <div className = "temp">
+            {data.main ? <h1>{data.main.temp}°F</h1> : null}
           </div>
-          <div className="clouds">
-            {weatherData?.weather ? <p>{weatherData.weather[0].main}</p> : null}
+          <div className = "clouds">
+            {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
+
       {weatherData?.name !== undefined && 
         <div className="bottom">
           <div className="feels like">
@@ -50,24 +50,23 @@ function App() {
               <p className="bold">{weatherData.main.feels_like}</p>
             ) : null}
             <p>Feels Like</p>
+
           </div>
-          <div className="humidity">
-            {weatherData?.main ? (
-              <p className="bold">{weatherData.main.humidity}</p>
-            ) : null}
-            <p>Humidity</p>
+          <div className = "humidity">
+            {data.main ? <p className='bold'>{data.main.humidity}</p> : null}
+            <p> Humidity </p>
           </div>
-          <div className="wind">
-            {weatherData?.wind ? (
-              <p className="bold">{weatherData.wind.speed} MPH</p>
-            ) : null}
+          <div className = "wind">
+            {data.wind ? <p className='bold'>{data.wind.speed} MPH </p> : null}
             <p>Wind Speed</p>
           </div>
+
         </div>
       }
     </div>
     </div>
   );
 }
+
 
 export default App;
