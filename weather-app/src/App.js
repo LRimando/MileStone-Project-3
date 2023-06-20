@@ -1,15 +1,10 @@
-import React, {useEffect, useState} from 'react'; // import react and use a useState effect
+import React, {useState} from 'react'; // import react and use a useState effect
 import axios from 'axios'; // import axios dependency for our API 
-import Search from './components/search/search';
-import CurrentWeather from "./components/current-weather/current-weather";
-import Forecast from "./components/forecast/forecast";
-import './App.css';
-import '.App.js';
 
-const App = () => {
-  const [weatherData, setWeatherData] = useState(null);
-  const [location, setLocation] = useState('') // another state needed to find current location 
-}
+
+function App() {
+  const [weatherData, setData] = useState({})
+  const [location, setLocation] = useState('')
 
   // api url here
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ac647493ae56957ba5c10c969f967bec`//${} this is the dynamic value we will be passing
@@ -47,12 +42,15 @@ const App = () => {
             {data.weather ? <p>{data.weather[0].main}</p> : null}
           </div>
         </div>
-      </div>  
-  {data.name != undefined && (
-        <div className = "bottom">
-          <div className = "feels like">
-            {data.main ? <p className = 'bold'>{data.main.feels_like}</p> : null}
-            <p> Feels Like </p>
+
+      {weatherData?.name !== undefined && 
+        <div className="bottom">
+          <div className="feels like">
+            {weatherData?.main ? (
+              <p className="bold">{weatherData.main.feels_like}</p>
+            ) : null}
+            <p>Feels Like</p>
+
           </div>
           <div className = "humidity">
             {data.main ? <p className='bold'>{data.main.humidity}</p> : null}
@@ -62,9 +60,13 @@ const App = () => {
             {data.wind ? <p className='bold'>{data.wind.speed} MPH </p> : null}
             <p>Wind Speed</p>
           </div>
-      </div>
-    )}   
-  </div>
+
+        </div>
+      }
+    </div>
+    </div>
   );
+}
+
 
 export default App;
