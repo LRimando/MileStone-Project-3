@@ -43,7 +43,7 @@ function App() {
             {weatherData?.weather ? <p>{weatherData.weather[0].main}</p> : null}
           </div>
         </div>
-      {weatherData?.name !== undefined &&
+      {weatherData?.name !== undefined && 
         <div className="bottom">
           <div className="feels like">
             {weatherData?.main ? (
