@@ -21,7 +21,7 @@ function App() {
   }
  
   return (
-    <div className="app">
+    <div className={`app ${typeof weatherData.main !== "undefined" && (weatherData.main.temp > 57 ? 'warm' : 'cold')}`}>
       <div className="search">
         <input
           value={location}

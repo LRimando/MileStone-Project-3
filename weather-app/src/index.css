@@ -24,14 +24,18 @@ h1 {
 .app {
   width: 100%;
   height: 100vh;
-  position: relative; 
-  background-color: rgba (0,0,0,0.3);
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.3);
   color: #fff;
+  transition: 0.4s ease;
 }
 
 .app:before {
   content: '';
-  background: url('images/trial-bg.jpg') no-repeat center center/cover;
+  background-image: url('images/trial-bg.jpg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -39,9 +43,19 @@ h1 {
   left: 0;
   z-index: -1;
 }
+
+.app.cold:before {
+  background-image: url('images/cold.jpg');
+}
+
+.app.warm:before {
+  background-image: url('images/warm.jpg');
+}
+
 .app .search {
   text-align: center;
   padding: 1rem;
+  transition: 0.4s ease;
 }
 
 .app input {
