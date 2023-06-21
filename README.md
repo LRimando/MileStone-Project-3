@@ -15,6 +15,7 @@ Axios (Javascript Library) was used to help with the API from openweathermap, si
 
 ## Outstanding Bugs or Unfinished Functionality
 
-N/A 
+The database used from openweathermap.org has only one collection and not two. 
+
 
 
