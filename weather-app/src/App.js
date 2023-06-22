@@ -1,27 +1,30 @@
-import React, {useState} from 'react'; // import react and use a useState effect
-import axios from 'axios'; // import axios dependency for our API
-
+import React, { useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [weatherData, setData] = useState({})
-  const [location, setLocation] = useState('')
+  const [weatherData, setData] = useState({});
+  const [location, setLocation] = useState('');
 
-  // api url here
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=ac647493ae56957ba5c10c969f967bec`//${} this is the dynamic value we will be passing
-     
-  //search function to connect to API
   const searchLocation = (event) => {
-    if (event.key === 'Enter') { // Even.key used to submit our input in an enter button
-      axios.get(url).then((response) => { //response will be passed through arrow function
-        setData(response.data)
-        console.log(response.data)
-      })
-      setLocation('')
+    if (event.key === 'Enter') {
+      const apiUrl = `http://localhost:8000/weather?location=${location}`;
+
+      axios
+        .get(apiUrl)
+        .then((response) => {
+          setData(response.data);
+          console.log(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      setLocation('');
     }
-  }
- 
+  };
+
   return (
-    <div className={`app ${typeof weatherData.main !== "undefined" && (weatherData.main.temp > 57 ? 'warm' : 'cold')}`}>
+    <div className={`app ${typeof weatherData.main !== 'undefined' && (weatherData.main.temp > 66 ? 'warm' : 'cold')}`}>
       <div className="search">
         <input
           value={location}
@@ -36,39 +39,28 @@ function App() {
           <div className="location">
             <p>{weatherData?.name}</p>
           </div>
-          <div className="temp">
-            {weatherData?.main ? <h1>{weatherData.main.temp}°F</h1> : null}
-          </div>
-          <div className="clouds">
-            {weatherData?.weather ? <p>{weatherData.weather[0].main}</p> : null}
-          </div>
+          <div className="temp">{weatherData?.main ? <h1>{weatherData.main.temp}°F</h1> : null}</div>
+          <div className="clouds">{weatherData?.weather ? <p>{weatherData.weather[0].main}</p> : null}</div>
         </div>
-      {weatherData?.name !== undefined && 
-        <div className="bottom">
-          <div className="feels like">
-            {weatherData?.main ? (
-              <p className="bold">{weatherData.main.feels_like}</p>
-            ) : null}
-            <p>Feels Like</p>
+        {weatherData?.name !== undefined && (
+          <div className="bottom">
+            <div className="feels like">
+              {weatherData?.main ? <p className="bold">{weatherData.main.feels_like}</p> : null}
+              <p>Feels Like</p>
+            </div>
+            <div className="humidity">
+              {weatherData?.main ? <p className="bold">{weatherData.main.humidity}</p> : null}
+              <p>Humidity</p>
+            </div>
+            <div className="wind">
+              {weatherData?.wind ? <p className="bold">{weatherData.wind.speed} MPH</p> : null}
+              <p>Wind Speed</p>
+            </div>
           </div>
-          <div className="humidity">
-            {weatherData?.main ? (
-              <p className="bold">{weatherData.main.humidity}</p>
-            ) : null}
-            <p>Humidity</p>
-          </div>
-          <div className="wind">
-            {weatherData?.wind ? (
-              <p className="bold">{weatherData.wind.speed} MPH</p>
-            ) : null}
-            <p>Wind Speed</p>
-          </div>
-        </div>
-      }
-    </div>
+        )}
+      </div>
     </div>
   );
 }
-
 
 export default App;
