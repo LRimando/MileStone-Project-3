@@ -102,3 +102,25 @@ h1 {
 .bold {
   font-weight: 700;
 }
+
+.navbar {
+  /* Styles for the navbar */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  padding: 10px;
+}
+
+.logo {
+  /* Styles for the logo/branding */
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.authentication {
+  /* Styles for the authentication components */
+  display: flex;
+  gap: 10px;
+}

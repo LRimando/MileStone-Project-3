@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import LoginForm from './models/LoginForm';
+import LogoutButton from './models/LogoutButton';
+import RegistrationForm from './models/RegistrationForm';
 
 function App() {
   const [weatherData, setData] = useState({});
   const [location, setLocation] = useState('');
+  
 
   const searchLocation = (event) => {
     if (event.key === 'Enter') {
@@ -25,6 +29,13 @@ function App() {
 
   return (
     <div className={`app ${typeof weatherData.main !== 'undefined' && (weatherData.main.temp > 66 ? 'warm' : 'cold')}`}>
+      <div className="navbar">
+        <div className="authentication">
+          <LoginForm />
+          <RegistrationForm />
+          <LogoutButton />
+        </div>
+      </div>
       <div className="search">
         <input
           value={location}
@@ -58,7 +69,7 @@ function App() {
             </div>
           </div>
         )}
-      </div>
+    </div>
     </div>
   );
 }
